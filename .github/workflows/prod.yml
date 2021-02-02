@@ -1,24 +1,16 @@
 name: create branch & pull request
 
 on:
-  pull_request:
-    branches: [ prod ]
-    types: [ closed ]  
+  delete: [stg]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # prod ブランチをチェックアウトする
-      - name: checkout work_space 
-        uses: actions/checkout@v2
-        with:
-          ref: prod 
-
-      # stgブランチを削除する 
-      - name: Delete Stageing Branch 
+      - name: Create Stageing Branch 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          hub delete stg 
+          git checkout -b stg
+          git push origin stg 
