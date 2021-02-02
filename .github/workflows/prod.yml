@@ -8,7 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: checkout prod
       - uses: actions/checkout@v2
+        with:
+          ref: prod
 
       - name: Create Stageing Branch 
         env:
