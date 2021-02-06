@@ -18,6 +18,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git -D stg
+          git branch -D stg
           git checkout -b stg
           git push -f origin stg
