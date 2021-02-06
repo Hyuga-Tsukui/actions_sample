@@ -18,6 +18,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git branch -D stg
           git checkout -b stg
           git push -f origin stg
