@@ -1,10 +1,11 @@
 name: create branch & pull request
 
 on:
-  delete
+  push:
+    branches: [prod]
 
 jobs:
-  delete_hook:
+  repartition_stage_branch:
     runs-on: ubuntu-latest
 
     steps:
@@ -13,11 +14,10 @@ jobs:
         with:
           ref: prod
 
-      - name: Create Stageing Branch 
+      - name: force push stage branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo Run only when branch stg is deleted
-        if: |
+          git -D stg
           git checkout -b stg
-          git push origin stg 
+          git push -f origin stg
